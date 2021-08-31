@@ -1,14 +1,8 @@
 import imagesSaga from './imagesSaga';
+import statSaga from './statSaga';
+import { all } from 'redux-saga/effects';
 
 // watcher saga --> actions --> worker saga
-//worker saga
-// function* handleImagesLoad() {
-//     console.log('hey worker');
-// }
-
-// // watcher saga
-// function* rootSaga() {
-//     yield takeEvery(IMAGES.LOAD, handleImagesLoad);
-// }
-
-export default imagesSaga;
+export default function* rootSaga() {
+    yield all([imagesSaga(), statSaga()]);
+}
